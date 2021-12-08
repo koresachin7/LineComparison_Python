@@ -17,8 +17,8 @@ class LineComparison:
         Description:
             this function for Calculate length of line
         """
-        for i in self.line_list:
-            self.length_of_line = math.sqrt((i.x2 - i.x1) * (i.x2 - i.x1) + (i.y2 - i.y1) * (i.y2 - i.y1))
+        for lines in self.line_list:
+            self.length_of_line = math.sqrt((lines.x2 - lines.x1) * (lines.x2 - lines.x1) + (lines.y2 - lines.y1) * (lines.y2 - lines.y1))
             print("Length of Line :-  ", self.length_of_line)
 
 
@@ -39,8 +39,8 @@ if __name__ == '__main__':
         * Creating multiple Object multiple line length calculation
         * using x and y co_ordinates for that 
     """
-    lines = int(input("Number of line Comparison : --""\n"))
-    for i in range(lines):
+    line = int(input("Number of line Comparison : --""\n"))
+    for line_l in range(line):
         print("Enter co-ordinates for x-axis of first line : ")
         x1 = int(input("line x1""\n"))
         x2 = int(input("line x2""\n"))
