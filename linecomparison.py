@@ -40,7 +40,7 @@ if __name__ == '__main__':
         * using x and y co_ordinates for that 
     """
     line = int(input("Number of line Comparison : --""\n"))
-    for lines_l in range(line):
+    for line_l in range(line):
         print("Enter co-ordinates for x-axis of first line : ")
         x1 = int(input("line x1""\n"))
         x2 = int(input("line x2""\n"))
