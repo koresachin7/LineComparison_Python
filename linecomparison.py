@@ -1,7 +1,7 @@
 """
 * @Author: Sachin S Kore
 * @Date: 2021-12-9
-* @Title : Calculate length of Line is equal or not
+* @Title : Calculate length of Line and compare
 """
 import math
 from logging import *
@@ -28,7 +28,7 @@ class LineComparison:
     def check_equal(self):
         """
         Description:
-            this function use for nested loop and list of sun to check
+            this function use for nested loop and list for check
             length of line equal or not
         """
         # print(self.list_sum)
@@ -39,6 +39,23 @@ class LineComparison:
                 else:
                     print(
                         "" + str(self.list_sum[i]) + " " "Length of Line is not equal" " " + str(self.list_sum[j]) + "")
+
+    def comparison(self):
+        """
+        Description:
+            this function use for nested loop and list for compare length og line
+        """
+        for i in range(len(self.list_sum)):
+            for j in range(i + 1, len(self.list_sum)):
+                if str(self.list_sum[i]) > (str(self.list_sum[j])):
+                    print("Length of Line " + str(self.list_sum[i]) + " " "is greater than" " Length of Line " + str(
+                        self.list_sum[j]) + "")
+                elif str(self.list_sum[i]) < (str(self.list_sum[j])):
+                    print("Length of Line " + str(self.list_sum[i]) + " " "is lesser than " " Length of Line " + str(
+                        self.list_sum[j]) + "")
+                else:
+                    print("Length of Line " + str(self.list_sum[i]) + " " " Equal to  " " Length of Line " + str(
+                        self.list_sum[j]) + "")
 
 
 class Line:
@@ -79,7 +96,5 @@ if __name__ == '__main__':
         error("Only number please....")
     # calling the instance method using the object line_comparison
     line_comparison.length_find()
-<<<<<<< HEAD
-=======
     line_comparison.check_equal()
->>>>>>> 49dfd7e750c7b8e65ee9d59e209c42bd3e25417c
+    line_comparison.comparison()
