@@ -1,18 +1,56 @@
 """
 * @Author: Sachin S Kore
-* @Date: 2021-12-9
+* @Date: 2022-1-4
 * @Title : Calculate length of Line and compare
 """
+import logging
 import math
 from logging import *
 
 
 class LineComparison:
+
     def __init__(self):
         # using list to store player class object
         self.line_list = []
         self.length_of_line = 0
         self.list_sum = []
+
+    def start(self):
+        try:
+            print("""Your choices:-
+                                            1.Add line
+                                            2.Find length
+                                            3.Check Equality
+                                            4.Check Comparison
+                                            """)
+            choice = int(input("Enter your choice:- "))
+            if choice == 1:
+                x1 = int(input("Enter the x1 value:- "))
+                x2 = int(input("Enter the x2 value:- "))
+                y1 = int(input("Enter the y1 value:- "))
+                y2 = int(input("Enter the y2 value:- "))
+                line_dict = {"x1": x1, "x2": x2, "y1": y1, "y2": y2}
+                line = Line(line_dict)
+                line_comparison.add_line(line)
+            elif choice == 2:
+                line_comparison.length_find()
+            elif choice == 3:
+                line_comparison.check_equal()
+            elif choice == 4:
+                line_comparison.comparison()
+
+        except Exception:
+            logging.exception("Pass the integer value")
+        line_comparison.start()
+
+    def add_line(self, line):
+        """
+            Description:
+                   this function for adding object in line list
+        """
+
+        self.line_list.append(line)
 
     def length_find(self):
         """
@@ -24,6 +62,7 @@ class LineComparison:
                 (lines.x2 - lines.x1) * (lines.x2 - lines.x1) + (lines.y2 - lines.y1) * (lines.y2 - lines.y1))
             print("Length of Line :-  ", self.length_of_line)
             self.list_sum.append(self.length_of_line)
+        return self.length_of_line
 
     def check_equal(self):
         """
@@ -31,7 +70,6 @@ class LineComparison:
             this function use for nested loop and list for check
             length of line equal or not
         """
-        # print(self.list_sum)
         for i in range(len(self.list_sum)):
             for j in range(i + 1, len(self.list_sum)):
                 if str(self.list_sum[i]).__eq__(str(self.list_sum[j])):
@@ -60,41 +98,22 @@ class LineComparison:
 
 class Line:
     # parameterized constructor
-    def __init__(self, x1, x2, y1, y2):
-        self.x1 = x1
-        self.x2 = x2
-        self.y1 = y1
-        self.y2 = y2
+    def __init__(self, line_dict):
+        self.x1 = line_dict.get("x1")
+        self.x2 = line_dict.get("x2")
+        self.y1 = line_dict.get("y1")
+        self.y2 = line_dict.get("y2")
 
 
 if __name__ == '__main__':
+    """
+        Description:
+            * Creating multiple Object multiple line length calculation
+            * using x and y co_ordinates for that 
+    """
     print("Welcome To Line Comparison Computation Program")
     # logging basic config method and saving log files
     LOG_FORMAT = '{lineno} *** {name} *** {asctime} *** {message}'
     basicConfig(filename='logfile.log', level=DEBUG, style='{', format=LOG_FORMAT)
     line_comparison = LineComparison()
-    """
-    Description:
-        * Creating multiple Object multiple line length calculation
-        * using x and y co_ordinates for that 
-    """
-    try:
-        line = int(input("Number of line Comparison : --""\n"))
-        for line_l in range(line):
-            print("Enter co-ordinates for x-axis of first line : ")
-            x1 = int(input("line x1""\n"))
-            x2 = int(input("line x2""\n"))
-            print("Enter co-ordinates for y-axis of first line : ")
-            y1 = int(input("line y1""\n"))
-            y2 = int(input("line y2""\n"))
-            # creating object of the class
-            line_obj = Line(x1, x2, y1, y2)
-            # object append (adding) To line
-            line_comparison.line_list.append(line_obj)
-    except Exception:
-        print("Only number please....")
-        error("Only number please....")
-    # calling the instance method using the object line_comparison
-    line_comparison.length_find()
-    line_comparison.check_equal()
-    line_comparison.comparison()
+    line_comparison.start()
